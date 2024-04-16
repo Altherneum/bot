@@ -13,7 +13,7 @@ public class token {
 
     public static File DiscordBotTokens() {
         String FolderName = "/DiscordBot/data/";
-        // String FolderName = "C:\\Users\\user\\Desktop";
+        //String FolderName = "C:\\Users\\user\\Mon Drive\\Altherneum\\setup-logs\\DiscordBot\\data\\";
         String FileName = "tokens.yml";
         File file = new File(FolderName, FileName);
         return file;
