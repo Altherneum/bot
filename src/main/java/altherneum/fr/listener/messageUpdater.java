@@ -6,6 +6,7 @@
 public class messageUpdater(){
 
 public void sendUpdate(int channel, int messageID, string message){
+}
 
 public void updateLastMessage(int channel, int messageID, string message){
 }
