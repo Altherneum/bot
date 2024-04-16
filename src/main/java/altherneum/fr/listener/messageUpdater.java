@@ -7,10 +7,10 @@ package altherneum.fr.listener;
 
 public class messageUpdater{
 
-public void sendUpdate(int channel, int messageID, string message){
+public void sendUpdate(int channel, int messageID, String message){
 }
 
-public void updateLastMessage(int channel, int messageID, string message){
+public void updateLastMessage(int channel, int messageID, String message){
 }
 
 }
