@@ -9,6 +9,15 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
 import altherneum.fr.main.IDs;
 import altherneum.fr.main.main;
 
+
+/*
+ * 
+ * Need to check if message exist on copyMessage or else create message
+ * 
+ * Need to set Message directly on Repo to avoid use less discord Chanel for holding messages
+ * 
+ */
+
 public class messageUpdater {
     public static void copyMessage(String channel, String messageID, int messageNumber) throws InterruptedException, ExecutionException {
         Message message = main.api.getMessageById(messageID, main.api.getServerTextChannelById("1081950904644816956").get()).get();
