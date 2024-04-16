@@ -86,9 +86,13 @@ public class IDs {
     public static final String LogsMessage = "1081947413226455163";
     public static final String Annonces = "1081940940945629194";
     public static final String Regles = "1082078579426345011";
+    public static final String ReglesNew = "1117916774390829056";
     public static final String Invitation = "1081941748240089158";
     public static final String Sanctions = "1108535295227465798";
     public static final String AutoMod = "1081947188722155601";
+    public static final String NotrePub = "1081940336194105525";
+    public static final String Informations = "1081932471408529490";
+    public static final String Recrutement = "1095841321417179276";
 
     public static final String Statistiques = "1081940710799978546";
     public static final String Tops = "1081940819235319808";
@@ -99,6 +103,10 @@ public class IDs {
     public static final String CasinoDailyClick = "1082775165366177912";
     public static final String CasinoCoinFlip = "1092029640845041694";
     public static final String CasinoBanqueRoute = "1106616355731542151";
+    public static final String Casino = "1082775318751891506";
+
+    public static final String LogsTachesStatff = "1081946944689147934";
+    public static final String EventsNote = "1111998374158290954";
 
     public static int prixCoinFlip = 1000;
     //

@@ -11,6 +11,7 @@ public class events {
     public static void startEvents() throws ExecutionException, InterruptedException, IOException {
         reconnect();
         messages.sendmessageOnline();
+        messageUpdater.updateAllMessage();
         //
         CheckInvite.start();
         messageCount.messageListener();

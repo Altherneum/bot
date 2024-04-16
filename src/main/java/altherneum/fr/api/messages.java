@@ -6,6 +6,7 @@ import org.javacord.api.entity.user.User;
 import altherneum.fr.main.IDs;
 import altherneum.fr.main.main;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class messages {
