@@ -38,11 +38,11 @@ public class messageUpdater {
 
     public static void updateAllMessage() throws InterruptedException, ExecutionException {
         copyMessage(IDs.Ticket, "1083864323300012043", 1);
-        copyMessage(IDs.ReglesNew, "1117917094906953809", 1);
-        copyMessage(IDs.ReglesNew, "1121133776853024808", 2);
+        copyMessage(IDs.ReglesNew, "1117917094906953809", 2);
+        copyMessage(IDs.ReglesNew, "1121133776853024808", 1);
         copyMessage(IDs.Regles, "1086666682610745364", 1);
-        copyMessage(IDs.NotrePub, "1086667328743288934", 2);
-        copyMessage(IDs.NotrePub, "1086737989398429839", 1);
+        copyMessage(IDs.NotrePub, "1086667328743288934", 1);
+        copyMessage(IDs.NotrePub, "1086737989398429839", 2);
         copyMessage(IDs.Informations, "1086667520271990856", 1);
         copyMessage(IDs.CasinoCoinFlip, "1086668476724301927", 1);
         copyMessage(IDs.CasinoBoutique, "1086668570873835602", 1);
