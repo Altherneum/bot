@@ -1,6 +1,5 @@
 package altherneum.fr.listener;
 
-import org.javacord.api.entity.channel.ChannelCategory;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.permission.Role;
 import org.javacord.api.entity.user.User;
@@ -9,6 +8,15 @@ import org.javacord.api.entity.user.UserStatus;
 import altherneum.fr.main.IDs;
 import altherneum.fr.main.main;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+
+/* import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean; */
+import com.sun.management.OperatingSystemMXBean;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -16,6 +24,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
+
+
 
 //Ajouter nombre channel (Voc / text / Forum / Thread), et user en cours de vocal
 
@@ -63,6 +74,14 @@ public class StatsTimer {
                         }
                     }
                 }
+
+                String uptime = "";
+                try{
+                    uptime = getUptime();
+                }catch(Exception e){
+
+                }
+
                 String MessageUser = ":green_circle: **En ligne** : " + Online + "\n" + ":red_circle: **Hors ligne** : "
                         + Offline + "\n" + ":no_entry: **Ne pas déranger** : " + DND + "\n"
                         + ":crescent_moon: **Absent** : " + IDLE + "\n" + ":robot: Bot : " + Bot;
@@ -76,9 +95,11 @@ public class StatsTimer {
                 Date date = new Date();
                 date.setMinutes(date.getMinutes() + 15);
                 long time2 = date.toInstant().getEpochSecond();
+
                 String finalMessage = "<t:" + time + ":R>" + ", prochain : " + "<t:" + time2 + ":R>" + "\n\n"
                         + MessageUser + "\n\n" + StringroleLess
-                        + "\n" + everHereOne + "\n" + RulesOnly + "\n\n" + MessageRole;
+                        + "\n" + everHereOne + "\n" + RulesOnly + "\n\n" + MessageRole + "\n\n\n\n" + uptime;
+                        
                 try {
                     EmbedBuilder embedBuilder = new EmbedBuilder();
                     embedBuilder.setDescription(finalMessage);
@@ -133,5 +154,57 @@ public class StatsTimer {
 
     public static void setCounterOnCategory(int users, int online) {
         IDs.CategoryAltherneum.updateName("●▬▬▬▬▬▬▬▬๑ " + users + "🙋" + "      " + online + "🟢").join();
+    }
+
+    public static String getUptime()
+            throws UnknownHostException, IOException, InterruptedException, ExecutionException, NullPointerException {
+                
+        OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+
+        Runtime runtime = Runtime.getRuntime();
+        long maxMemory = runtime.maxMemory();
+        long allocatedMemory = runtime.totalMemory();
+        long freeMemory = runtime.freeMemory();
+        long usedMemory = allocatedMemory - freeMemory;
+        long totalRam = operatingSystemMXBean.getTotalPhysicalMemorySize();
+
+        double cpuusage = operatingSystemMXBean.getSystemCpuLoad() * 100;
+
+        File diskPartition = new File("/");
+        long free = diskPartition.getFreeSpace();
+        long total = diskPartition.getTotalSpace();
+
+        long currentTime = System.currentTimeMillis();
+        boolean isPinged = InetAddress.getByName("www.google.fr").isReachable(2000);
+        currentTime = System.currentTimeMillis() - currentTime;
+
+        long currentTime2 = System.currentTimeMillis();
+        boolean isPinged2 = InetAddress.getByName("www.discord.com").isReachable(2000);
+        currentTime2 = System.currentTimeMillis() - currentTime2;
+
+        String message = "";
+
+        long time = Instant.now().getEpochSecond();
+        message += "<t:" + time + ":R>";
+
+        message += "\n\n**__RAM__** : " + Math.round(usedMemory / 1024 / 1024) + "/"
+                + Math.round(maxMemory / 1024 / 1024) + "/" + Math.round(totalRam / 1024 / 1024) + " Mo";
+        message += "\n**__CPU__** : " + Math.round(cpuusage) + "%";
+        message += "\n**__HDD__** : " + Math.round(free / 1024 / 1024 / 1024) + "/"
+                + Math.round(total / 1024 / 1024 / 1024) + " Go";
+
+        if (isPinged) {
+            message += "\n\n**__Ping__** google.fr : " + currentTime + " Ms";
+        } else {
+            message += "\n\n**__Ping__** : __Erreur__";
+        }
+
+        if (isPinged2) {
+            message += "\n**__Ping__** discord.com : " + currentTime2 + " Ms";
+        } else {
+            message += "\n**__Ping__** : __Erreur__";
+        }
+
+        return message;
     }
 }
