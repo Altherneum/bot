@@ -167,7 +167,7 @@ public class StatsTimer {
         long freeMemory = runtime.freeMemory();
         long usedMemory = allocatedMemory - freeMemory;
         long totalRam = operatingSystemMXBean.getTotalPhysicalMemorySize();
-        long totalRamFree = operatingSystemMXBean.getTotalMemorySize();
+        long totalRamFree = operatingSystemMXBean.getFreeMemorySize();
         long totalRamUsed = totalRam - totalRamFree;
 
         double cpuusage = operatingSystemMXBean.getSystemCpuLoad() * 100;
@@ -186,9 +186,9 @@ public class StatsTimer {
 
         String message = "";
 
-        message += "\n\n**__Bot RAM__** : " + Math.round(usedMemory / 1024 / 1024) + "/"
+        message += "\n**__Bot RAM__** : " + Math.round(usedMemory / 1024 / 1024) + "/"
                 + Math.round(maxMemory / 1024 / 1024) + " Mo";
-        message += "\n\n**__RAM VPS__** : " + Math.round(totalRamUsed / 1024 / 1024) + "/" + Math.round(totalRam / 1024 / 1024) + " Mo";
+        message += "\n**__RAM VPS__** : " + Math.round(totalRamUsed / 1024 / 1024) + "/" + Math.round(totalRam / 1024 / 1024) + " Mo";
         message += "\n**__CPU__** : " + Math.round(cpuusage) + "%";
         message += "\n**__HDD__** : " + Math.round(free / 1024 / 1024 / 1024) + "/"
                 + Math.round(total / 1024 / 1024 / 1024) + " Go";
