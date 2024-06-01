@@ -12,6 +12,7 @@
 Bot Discord for Altherneum.fr [server](https://doc.altherneum.fr/github/server)
 
 # Github
+- [Repository](https://github.com/Altherneum/bot)
 - [Tableau](https://github.com/orgs/Altherneum/projects/2/)
 - [Issues](https://github.com/Altherneum/bot/issues)
 - [Commits](https://github.com/Altherneum/bot/commits/main)
