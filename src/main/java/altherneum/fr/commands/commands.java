@@ -91,6 +91,7 @@ public class commands {
         public static SlashCommandBuilder Upvote() {
                 return new SlashCommandBuilder().setName("upvote")
                                 .setDescription("Voter pour l'utilisateur")
+                                .addOption(option(SlashCommandOptionType.USER, "Utilisateur", "L'utilisateur pour qui vous votez", true))
                                 .addOption(option(SlashCommandOptionType.STRING, "Raison",
                                                 "La raison pour la quelle vous votez pour cet utilisateur",
                                                 true));

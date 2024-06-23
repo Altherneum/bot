@@ -30,6 +30,10 @@ public class upvote {
                     User user = slashCommandInteraction.getOptionUserValueByIndex(0).get();
                     String raison = slashCommandInteraction.getOptionStringValueByIndex(1).get();
                     
+                    /*
+                     * Ajouter un timer pour éviter le spam d'upvote
+                     */
+
                     if(user != sender){
                         File file = FileSystem.file(user);
                         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
