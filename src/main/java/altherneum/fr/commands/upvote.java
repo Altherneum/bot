@@ -34,7 +34,7 @@ public class upvote {
                      * Ajouter un timer pour éviter le spam d'upvote
                      */
 
-                    if(user.equals(sender)){
+                    if(user.getIdAsString().equals(sender.getIdAsString())){
                         File file = FileSystem.file(user);
                         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
 
