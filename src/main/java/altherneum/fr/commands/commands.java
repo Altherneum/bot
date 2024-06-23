@@ -40,6 +40,7 @@ public class commands {
                 casinoCoinFlip.coinFlipCmd();
                 createButton.onCreateButton();
                 ip.onIP();
+                upvote.onUpvote();
                 banqueRoute.banquerouteCMD();
         }
 
@@ -62,6 +63,7 @@ public class commands {
                 arrays.add(CreateButton());
                 arrays.add(IP());
                 arrays.add(BanqueRoute());
+                arrays.add(Upvote());
                 return arrays.stream().toList();
         }
 
@@ -84,6 +86,14 @@ public class commands {
                 return new SlashCommandBuilder().setName("emptychannel")
                                 .setDescription("Vide le channel de tout ses messages")
                                 .setDefaultEnabledForPermissions(PermissionType.ADMINISTRATOR);
+        }
+
+        public static SlashCommandBuilder Upvote() {
+                return new SlashCommandBuilder().setName("upvote")
+                                .setDescription("Voter pour l'utilisateur")
+                                .addOption(option(SlashCommandOptionType.STRING, "Raison",
+                                                "La raison pour la quelle vous votez pour cet utilisateur",
+                                                true));
         }
 
         public static SlashCommandBuilder Test() {

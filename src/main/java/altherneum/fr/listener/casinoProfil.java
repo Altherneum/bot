@@ -36,6 +36,8 @@ public class casinoProfil {
         for (String invites : fileConfiguration.getStringList("ListeInvites")) {
             totalInvites += fileConfiguration.getInt("InvitesCounted." + invites);
         }
+        int userUpvote = fileConfiguration.getInt("userUpvote");
+        int userUpvoteStaff = fileConfiguration.getInt("userUpvoteStaff");
 
         Timestamp timestamp = new Timestamp(user.getJoinedAtTimestamp(server).get().toEpochMilli());
         Date date = new Date(timestamp.getTime());
@@ -50,12 +52,14 @@ public class casinoProfil {
                 + "\nSur Discord depuis le : **__" + StatsTimer.DateFormated(date2) + "__**");
         embedBuilder.addInlineField("Rôle le plus haut",
                 user.getRoles(server).get(user.getRoles(server).size() - 1).getMentionTag());
-        embedBuilder.addInlineField("    \uD83D\uDCB0 Argent", "" + Gold);
-        embedBuilder.addInlineField("    \uD83D\uDCAC Messages", "" + i);
+        embedBuilder.addInlineField("    💰 Argent", "" + Gold);
+        embedBuilder.addInlineField("    💬 Messages", "" + i);
         embedBuilder.addInlineField("    📞 Vocal", "" + VoiceCounter.voiceSecFormat(voc));
-        embedBuilder.addInlineField("    \uD83D\uDC8C Invitations", "" + totalInvites);
+        embedBuilder.addInlineField("    💌 Invitations", "" + totalInvites);
         embedBuilder.addInlineField("    ⏳ Gains passifs", "" + Passifs);
-        embedBuilder.addInlineField("    \uD83D\uDD59 Clique journalier", "" + DayliClaim);
+        embedBuilder.addInlineField("    🕙 Clique journalier", "" + DayliClaim);
+        embedBuilder.addInlineField("    👍 Réputation", "" + userUpvote);
+        embedBuilder.addInlineField("    👍 Réputation staff", "" + userUpvoteStaff);
 
         List<Role> roles = user.getRoles(main.api.getServerById(IDs.serverID).get());
         ArrayList<Role> rolesEnd = new ArrayList<Role>();
