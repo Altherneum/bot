@@ -46,9 +46,9 @@ public class upvote {
                             embedBuilder.addInlineField("Par", sender.getMentionTag());
                             embedBuilder.addInlineField("Raison", raison);
 
-                            if (user.getRoles(main.api.getServerById(IDs.serverID).get()).contains(IDs.RoleModeration)) {
-                            int userUpvoteStaff = fileConfiguration.getInt("userUpvoteStaff");
-                            fileConfiguration.set("userUpvoteStaff", userUpvoteStaff + 1);
+                            if (sender.getRoles(main.api.getServerById(IDs.serverID).get()).contains(IDs.RoleModeration)) {
+                                int userUpvoteStaff = fileConfiguration.getInt("userUpvoteStaff");
+                                fileConfiguration.set("userUpvoteStaff", userUpvoteStaff + 1);
                             } else {
                                 int userUpvote = fileConfiguration.getInt("userUpvote");
                                 fileConfiguration.set("userUpvote", userUpvote + 1);
