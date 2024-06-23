@@ -37,7 +37,7 @@ public class upvote {
                     embedBuilder.setTitle("👍 Upvote");
 
                     if (!user.getIdAsString().equals(sender.getIdAsString())) {
-                        if(CanVote(user, 60)){
+                        if(CanVote(sender, 60)){
                             File file = FileSystem.file(user);
                             FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
 
