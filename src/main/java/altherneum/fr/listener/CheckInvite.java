@@ -122,8 +122,8 @@ public class CheckInvite {
                         embedBuilder.setTitle("\uD83C\uDD95 Arrivée");
                         Timestamp timestamp2 = new Timestamp(user.getCreationTimestamp().toEpochMilli());
                         Date date2 = new Date(timestamp2.getTime());
-                        embedBuilder.setDescription("Bienvenue à toi " + user.getMentionTag() + "  "
-                                + user.getDiscriminatedName() + "\nSur Discord depuis le : **__"
+                        embedBuilder.setDescription("Bienvenue à toi " + user.getMentionTag() + "  (`"
+                                + user.getDiscriminatedName() + "`)\nSur Discord depuis le : **__"
                                 + StatsTimer.DateFormated(date2) + "__**\n\n");
                         embedBuilder.addInlineField("Invité par", inviter.getMentionTag());
                         embedBuilder.addInlineField("Lien", ".gg/" + richInvite1.getCode());
@@ -144,8 +144,8 @@ public class CheckInvite {
                         embedBuilder.setTitle("\uD83C\uDD95 Retour");
                         Timestamp timestamp2 = new Timestamp(user.getCreationTimestamp().toEpochMilli());
                         Date date2 = new Date(timestamp2.getTime());
-                        embedBuilder.setDescription("Bon retour à toi " + user.getMentionTag() + "  "
-                                + user.getDiscriminatedName() + "\nSur Discord depuis le : **__"
+                        embedBuilder.setDescription("Bon retour à toi " + user.getMentionTag() + "  (`"
+                                + user.getDiscriminatedName() + "`)\nSur Discord depuis le : **__"
                                 + StatsTimer.DateFormated(date2) + "__**\n\n");
                         embedBuilder.addInlineField("Invité par", inviter.getMentionTag());
                         embedBuilder.addInlineField("Lien", ".gg/" + richInvite1.getCode());
