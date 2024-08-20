@@ -16,6 +16,8 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean; */
 import com.sun.management.OperatingSystemMXBean;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -158,8 +160,9 @@ public class StatsTimer {
 
     public static String getUptime()
             throws UnknownHostException, IOException, InterruptedException, ExecutionException, NullPointerException {
-                
-        OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+
+        OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory
+                .getOperatingSystemMXBean();
 
         Runtime runtime = Runtime.getRuntime();
         long maxMemory = runtime.maxMemory();
@@ -176,19 +179,38 @@ public class StatsTimer {
         long free = diskPartition.getFreeSpace();
         long total = diskPartition.getTotalSpace();
 
+        boolean alternativePing = true;
+
+        String adress1 = "google.fr";
+        boolean isPinged = false;
+        String adress2 = "discord.com";
+        boolean isPinged2 = false;
+
+        int port = 80;
+        int timeout = 2000;
+
         long currentTime = System.currentTimeMillis();
-        boolean isPinged = InetAddress.getByName("www.google.fr").isReachable(2000);
+        if (alternativePing) {
+            isPinged = connectSocket(adress1, port, timeout);
+        } else {
+            isPinged = InetAddress.getByName(adress1).isReachable(timeout);
+        }
         currentTime = System.currentTimeMillis() - currentTime;
 
         long currentTime2 = System.currentTimeMillis();
-        boolean isPinged2 = InetAddress.getByName("www.discord.com").isReachable(2000);
+        if (alternativePing) {
+            isPinged2 = InetAddress.getByName(adress2).isReachable(timeout);
+        } else {
+            isPinged2 = connectSocket(adress2, port, timeout);
+        }
         currentTime2 = System.currentTimeMillis() - currentTime2;
 
         String message = "";
 
         message += "\n**__Bot RAM__** : " + Math.round(usedMemory / 1024 / 1024) + "/"
                 + Math.round(maxMemory / 1024 / 1024) + " Mo";
-        message += "\n**__RAM VPS__** : " + Math.round(totalRamUsed / 1024 / 1024) + "/" + Math.round(totalRam / 1024 / 1024) + " Mo";
+        message += "\n**__RAM VPS__** : " + Math.round(totalRamUsed / 1024 / 1024) + "/"
+                + Math.round(totalRam / 1024 / 1024) + " Mo";
         message += "\n**__CPU__** : " + Math.round(cpuusage) + "%";
         message += "\n**__HDD__** : " + Math.round(free / 1024 / 1024 / 1024) + "/"
                 + Math.round(total / 1024 / 1024 / 1024) + " Go";
@@ -206,5 +228,18 @@ public class StatsTimer {
         }
 
         return message;
+    }
+    
+    public static boolean connectSocket(String address, int port, int timeout) throws IOException {
+        Socket socket = new Socket();
+        try {
+            socket.connect(new InetSocketAddress(address, port), timeout);
+            return true;
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            return false;
+        } finally {
+            socket.close();
+        }
     }
 }
