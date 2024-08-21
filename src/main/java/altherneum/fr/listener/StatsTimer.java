@@ -216,13 +216,13 @@ public class StatsTimer {
                 + Math.round(total / 1024 / 1024 / 1024) + " Go";
 
         if (isPinged) {
-            message += "\n\n**__Ping__** google.fr : " + currentTime + " Ms";
+            message += "\n\n**__Ping__** " + adress1 + " : " + currentTime + " Ms";
         } else {
             message += "\n\n**__Ping__** : __Erreur__";
         }
 
         if (isPinged2) {
-            message += "\n**__Ping__** discord.com : " + currentTime2 + " Ms";
+            message += "\n**__Ping__** " + adress2 + " : " + currentTime2 + " Ms";
         } else {
             message += "\n**__Ping__** : __Erreur__";
         }
