@@ -27,6 +27,6 @@ Bot Discord for Altherneum.fr [server](https://doc.altherneum.fr/github/server)
 
 # Configuration
 - [Discord token](https://github.com/Altherneum/server/blob/main/DiscordBot/data/tokens.yml)
-- [Discord channels ID](https://github.com/Altherneum/bot/blob/main/src/main/java/Altherneum/fr/main/IDs.java)
-- [Main](https://github.com/Altherneum/bot/blob/main/src/main/java/Altherneum/fr/main/main.java)
-- [Messages](https://github.com/Altherneum/bot/blob/main/src/main/java/Altherneum/fr/api/messages.java)
+- [Discord channels ID](https://github.com/Altherneum/bot/blob/main/src/main/java/altherneum/fr/main/IDs.java)
+- [Main](https://github.com/Altherneum/bot/blob/main/src/main/java/altherneum/fr/main/main.java)
+- [Messages](https://github.com/Altherneum/bot/blob/main/src/main/java/altherneum/fr/api/messages.java)
