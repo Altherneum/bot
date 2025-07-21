@@ -1,12 +1,42 @@
-<a href=""><img src="https://img.shields.io/github/commit-activity/m/Altherneum/bot?color=red&style=for-the-badge"></a>
-<a href=""><img src="https://img.shields.io/github/last-commit/Altherneum/bot?color=red&style=for-the-badge"></a>
+# Badges
+![Doc site](https://img.shields.io/website?down_color=red&down_message=offline&style=badge&up_color=green&up_message=online&url=https%3A%2F%2Fdoc.Altherneum.fr)
+![MC site](https://img.shields.io/website?down_color=red&down_message=offline&style=badge&up_color=green&up_message=online&url=https%3A%2F%2Fmc.Altherneum.fr)  
+![View](https://komarev.com/ghpvc/?username=Altherneum&color=red&label=%F0%9F%91%80)
+![Discord](https://discordapp.com/api/guilds/1081921426333909072/widget.png)
 
-<a href=""><img src="https://img.shields.io/github/stars/Altherneum?color=red&style=for-the-badge"></a>
-<a href=""><img src="https://img.shields.io/github/stars/Altherneum/bot?color=red&label=repo%20stars&style=for-the-badge"></a>
-<a href=""><img src="https://img.shields.io/github/contributors/Altherneum/bot?style=for-the-badge"></a>
+![Commit week](https://img.shields.io/github/commit-activity/w/Altherneum/bot?color=red)
+![Commit month](https://img.shields.io/github/commit-activity/m/Altherneum/bot?color=red)
+![Commit year](https://img.shields.io/github/commit-activity/y/Altherneum/bot?color=red)
 
-<a href=""><img src="https://img.shields.io/github/languages/code-size/Altherneum/bot?color=red"></a>
-<a href=""><img src="https://img.shields.io/github/repo-size/Altherneum/bot?color=red"></a>
+![Creation date](https://img.shields.io/github/created-at/Altherneum/bot?color=red)
+![Commits](https://img.shields.io/github/commit-activity/t/Altherneum/bot?color=red)
+
+![Code size](https://img.shields.io/github/languages/code-size/Altherneum/bot?color=red)
+![Repo size](https://img.shields.io/github/repo-size/Altherneum/bot?color=red)
+![Files](https://img.shields.io/github/directory-file-count/Altherneum/bot?color=red)
+
+![Last commit](https://img.shields.io/github/last-commit/Altherneum/bot?color=red)
+
+![Release](https://img.shields.io/github/v/release/Altherneum/bot?color=red)
+![Release date](https://img.shields.io/github/release-date/Altherneum/bot)
+![Action workflow](https://img.shields.io/github/actions/workflow/status/Altherneum/bot/maven.yml?color=red)
+![Download](https://img.shields.io/github/downloads/Altherneum/bot/total?color=red)
+
+![Repo stars](https://img.shields.io/github/stars/Altherneum/bot?color=red&style=badge)
+![Contributors](https://img.shields.io/github/contributors/Altherneum/bot?color=red)
+![Forks](https://img.shields.io/github/forks/Altherneum/bot?color=red&style=badge)
+![Watchers](https://img.shields.io/github/watchers/Altherneum/bot?color=red&style=badge)
+
+![Languages counter](https://img.shields.io/github/languages/count/Altherneum/bot?color=red)
+![Top language](https://img.shields.io/github/languages/top/Altherneum/bot?color=red)
+
+![Issues](https://img.shields.io/github/issues/Altherneum/bot)
+![Pull request](https://img.shields.io/github/issues-pr/Altherneum/bot)
+
+## Organisation
+![.github discussions](https://img.shields.io/github/discussions/Altherneum/.github?color=red)
+![Org followers](https://img.shields.io/github/followers/Altherneum?color=red&style=badge)
+![Org sponsors](https://img.shields.io/github/sponsors/Altherneum?color=red)
 
 # Utilité
 Bot Discord for Altherneum.fr [server](https://doc.altherneum.fr/github/server)
