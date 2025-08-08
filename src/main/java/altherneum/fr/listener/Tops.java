@@ -86,7 +86,7 @@ public class Tops {
         users.add(userTop);
         usersTopVal.add(top);
         if (users.size() <= 4) {
-            Update(isGold, isMsg, isInvite, isVoice);
+            Update(isGold, isMsg, isInvite, isVoice, isVoiceSolo);
         } else {
             if (isGold) {
                 long time = Instant.now().getEpochSecond();
