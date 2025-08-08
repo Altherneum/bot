@@ -57,6 +57,14 @@ public class VoiceCounter {
                                     fileConfiguration.save(file);
 
                                 }
+                                else if (user.getConnectedVoiceChannel(server).get().getConnectedUsers().size() == 1) {
+
+                                    File file = FileSystem.file(user);
+                                    FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
+                                    fileConfiguration.set("voiceTimeSolo", (fileConfiguration.getInt("voiceTimeSolo") + 1));
+                                    fileConfiguration.save(file);
+
+                                }
                             }
                         }
                     } else {
