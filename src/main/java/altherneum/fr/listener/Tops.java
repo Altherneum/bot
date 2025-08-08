@@ -32,6 +32,8 @@ public class Tops {
     public static String msgInvite = "\n\n**__Top invitations__** :envelope: :\n";
 
     public static String msgVoice = "\n\n**__Top vocal__** :call_me: :\n";
+    
+    public static String msgVoiceSolo = "\n\n**__Top vocal solitaire__** :call_me: :\n";
 
     public static String msgFinalCategorie = "";
 
@@ -39,7 +41,7 @@ public class Tops {
         TimerTask task = new TimerTask() {
             public void run() {
                 try {
-                    Update(true, false, false, false);
+                    Update(true, false, false, false, false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -49,7 +51,7 @@ public class Tops {
         timer.scheduleAtFixedRate(task, 1000 * 10, 1000 * 60 * 60 * 8);
     }
 
-    public static void Update(boolean isGold, boolean isMsg, boolean isInvite, boolean isVoice)
+    public static void Update(boolean isGold, boolean isMsg, boolean isInvite, boolean isVoice, boolean isVoiceSolo)
             throws IOException, ExecutionException, InterruptedException {
         int top = 0;
         User userTop = main.api.getYourself();
@@ -71,6 +73,8 @@ public class Tops {
                     valueToCheck = invite;
                 } else if (isVoice) {
                     valueToCheck = fileConfiguration.getInt("voiceTime");
+                } else if (isVoiceSolo){
+                    valueToCheck = fileConfiguration.getInt("voiceTimeSolo");
                 }
 
                 if (top < valueToCheck) {
@@ -96,14 +100,16 @@ public class Tops {
                 msgFinalCategorie += msgInvite;
             } else if (isVoice) {
                 msgFinalCategorie += msgVoice;
+            } else if (isVoiceSolo) {
+                msgFinalCategorie += msgVoiceSolo;
             }
 
             int i = 0;
             for (User user : users) {
-                msgFinalCategorie += messageUser(user, i, isGold, isMsg, isInvite, isVoice, usersTopVal.get(i)) + "\n";
+                msgFinalCategorie += messageUser(user, i, isGold, isMsg, isInvite, isVoice, isVoiceSolo, usersTopVal.get(i)) + "\n";
                 File file = FileSystem.file(user);
                 FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
-                int gold = fileConfiguration.getInt("Gold") + goldRewardBoost(i, isInvite, isVoice);
+                int gold = fileConfiguration.getInt("Gold") + goldRewardBoost(i, isInvite, isVoice, isVoiceSolo);
                 fileConfiguration.set("Gold", gold);
                 fileConfiguration.save(file);
                 i++;
@@ -115,14 +121,16 @@ public class Tops {
             usersTopVal = new ArrayList<>();
 
             if (isGold) {
-                Update(false, true, false, false);
+                Update(false, true, false, false, false);
             } else if (isMsg) {
-                Update(false, false, true, false);
+                Update(false, false, true, false, false);
             } else if (isInvite) {
-                Update(false, false, false, true);
+                Update(false, false, false, true, false);
+            } else if (isVoice) {
+                Update(false, false, false, false, true);
             }
 
-            if (isVoice) {
+            if (isVoiceSolo) {
                 try {
                     EmbedBuilder embedBuilder = new EmbedBuilder();
                     embedBuilder.setDescription(msg);
@@ -137,9 +145,8 @@ public class Tops {
         }
     }
 
-    public static String messageUser(User user, int i, boolean isGold, boolean isMsg, boolean isInvite, boolean isVoice,
-            int valueScore) {
-        int goldReward = goldRewardBoost(i, isInvite, isVoice);
+    public static String messageUser(User user, int i, boolean isGold, boolean isMsg, boolean isInvite, boolean isVoice, boolean isVoiceSolo, int valueScore) {
+        int goldReward = goldRewardBoost(i, isInvite, isVoice, isVoiceSolo);
 
         String endMsg = "";
         if (isGold) {
@@ -149,6 +156,8 @@ public class Tops {
         } else if (isInvite) {
             endMsg += " invitations";
         } else if (isVoice) {
+            endMsg += " (" + VoiceCounter.voiceSecFormat(valueScore) + ")";
+        } else if (isVoiceSolo) {
             endMsg += " (" + VoiceCounter.voiceSecFormat(valueScore) + ")";
         }
 
@@ -169,12 +178,14 @@ public class Tops {
         return "";
     }
 
-    public static int goldRewardBoost(int i, boolean IsInvite, boolean isVoice) {
+    public static int goldRewardBoost(int i, boolean IsInvite, boolean isVoice, boolean isVoiceSolo) {
         int goldReward = goldReward(i);
         if (IsInvite) {
             goldReward = goldReward * 5;
         } else if (isVoice) {
             goldReward = goldReward * 2;
+        } else if (isVoiceSolo) {
+            goldReward = goldReward * 1;
         }
         return goldReward;
     }
