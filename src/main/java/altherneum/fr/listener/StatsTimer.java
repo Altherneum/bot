@@ -192,7 +192,7 @@ public class StatsTimer {
 
         String adress1 = "google.fr";
         boolean isPinged = false;
-        String adress2 = "discord.com";
+        String adress2 = "github.com";
         boolean isPinged2 = false;
 
         int port = 80;
