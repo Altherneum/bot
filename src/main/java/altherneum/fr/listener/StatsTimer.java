@@ -188,6 +188,7 @@ public class StatsTimer {
         long totalRamUsed = totalRam - totalRamFree;
 
         double cpuusage = operatingSystemMXBean.getSystemCpuLoad() * 100;
+        double cpuusageaverage = operatingSystemMXBean.getSystemLoadAverage() * 100;
 
         File diskPartition = new File("/");
         long free = diskPartition.getFreeSpace();
@@ -226,6 +227,7 @@ public class StatsTimer {
         message += "\n**__RAM VPS__** : " + Math.round(totalRamUsed / 1024 / 1024) + "/"
                 + Math.round(totalRam / 1024 / 1024) + " Mo";
         message += "\n**__CPU__** : " + Math.round(cpuusage) + "%";
+        message += "\n  **__Average__** : ~" + Math.round(cpuusageaverage) + "%";
         message += "\n**__HDD__** : " + Math.round(free / 1024 / 1024 / 1024) + "/"
                 + Math.round(total / 1024 / 1024 / 1024) + " Go";
 
