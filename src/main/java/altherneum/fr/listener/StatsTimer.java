@@ -106,7 +106,12 @@ public class StatsTimer {
         date.setMinutes(date.getMinutes() + 15);
         long time2 = date.toInstant().getEpochSecond();
 
-        String finalMessage = "<t:" + time + ":R>" + ", prochain : " + "<t:" + time2 + ":R>" + "\n\n"
+        String constructorForTimedString = "";
+        if(timed){
+            constructorForTimedString = ", prochain : " + "<t:" + time2 + ":R>";
+        }
+
+        String finalMessage = "<t:" + time + ":R>" + constructorForTimedString + "\n\n"
                 + MessageUser + "\n\n" + StringroleLess
                 + "\n" + everHereOne + "\n" + RulesOnly + "\n\n" + MessageRole + "\n\n\n\n" + uptime;
 
@@ -188,12 +193,12 @@ public class StatsTimer {
         long free = diskPartition.getFreeSpace();
         long total = diskPartition.getTotalSpace();
 
-        boolean alternativePing = true;
-
         String adress1 = "google.fr";
         boolean isPinged = false;
+        boolean alternativePing = true;
         String adress2 = "github.com";
         boolean isPinged2 = false;
+        boolean alternativePing2 = false;
 
         int port = 80;
         int timeout = 2000;
@@ -207,7 +212,7 @@ public class StatsTimer {
         currentTime = System.currentTimeMillis() - currentTime;
 
         long currentTime2 = System.currentTimeMillis();
-        if (alternativePing) {
+        if (alternativePing2) {
             isPinged2 = InetAddress.getByName(adress2).isReachable(timeout);
         } else {
             isPinged2 = connectSocket(adress2, port, timeout);
