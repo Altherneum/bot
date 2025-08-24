@@ -9,6 +9,7 @@ import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.interaction.callback.InteractionImmediateResponseBuilder;
 
 import altherneum.fr.api.FileSystem;
+import altherneum.fr.listener.StatsTimer;
 import altherneum.fr.main.IDs;
 import altherneum.fr.main.main;
 
@@ -24,8 +25,7 @@ public class testping {
                 interactionImmediateResponseBuilder.respond();
                 if (slashCommandInteraction.getUser().isBotOwner()) {
                     try {
-
-                    
+                        StatsTimer.BuildMessage(false, event.getSlashCommandInteraction().getChannel().get().getIdAsString());                    
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

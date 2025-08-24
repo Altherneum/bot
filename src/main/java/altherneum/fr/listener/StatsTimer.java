@@ -36,87 +36,96 @@ public class StatsTimer {
     public static void StatsTimerRunner() {
         TimerTask task = new TimerTask() {
             public void run() {
-                String MessageRole = "";
-                for (Role role : roles()) {
-                    if (role.equals(IDs.RoleGenshinImpact) || role.equals(IDs.RoleHomme) || role.equals(IDs.RolePC)) {
-                        MessageRole += "\n";
-                    }
-                    MessageRole += rolesString(role) + "\n";
-                }
-
-                int DND = 0;
-                int Online = 0;
-                int IDLE = 0;
-                int Offline = 0;
-                int Bot = 0;
-                int roleLess = 0;
-                int onlyRules = 0;
-                for (User user : main.api.getServerById(IDs.serverID).get().getMembers()) {
-                    if (user.isBot()) {
-                        Bot++;
-                    } else {
-                        if (user.getRoles(main.api.getServerById(IDs.serverID).get()).size() == 1) {
-                            roleLess++;
-                        }
-                        if (user.getRoles(main.api.getServerById(IDs.serverID).get())
-                                .size() == IDs.defaultRoleSizeWithSplitterAndRulesAndEveryOne) {
-                            if (user.getRoles(main.api.getServerById(IDs.serverID).get())
-                                    .contains(IDs.RoleReglesValides)) {
-                                onlyRules++;
-                            }
-                        }
-                        if (user.getStatus().equals(UserStatus.DO_NOT_DISTURB)) {
-                            DND++;
-                        } else if (user.getStatus().equals(UserStatus.ONLINE)) {
-                            Online++;
-                        } else if (user.getStatus().equals(UserStatus.IDLE)) {
-                            IDLE++;
-                        } else if (user.getStatus().equals(UserStatus.OFFLINE)) {
-                            Offline++;
-                        }
-                    }
-                }
-
-                String uptime = "";
-                try{
-                    uptime = getUptime();
-                }catch(Exception e){
-
-                }
-
-                String MessageUser = ":green_circle: **En ligne** : " + Online + "\n" + ":red_circle: **Hors ligne** : "
-                        + Offline + "\n" + ":no_entry: **Ne pas déranger** : " + DND + "\n"
-                        + ":crescent_moon: **Absent** : " + IDLE + "\n" + ":robot: Bot : " + Bot;
-
-                Role everyone = IDs.RoleEveryone;
-                String everHereOne = rolesString(everyone);
-                String StringroleLess = IDs.EmojiRocket + " Sans rôle : " + roleLess;
-                String RulesOnly = IDs.RoleReglesValides.getMentionTag() + " uniquement : " + onlyRules;
-
-                long time = Instant.now().getEpochSecond();
-                Date date = new Date();
-                date.setMinutes(date.getMinutes() + 15);
-                long time2 = date.toInstant().getEpochSecond();
-
-                String finalMessage = "<t:" + time + ":R>" + ", prochain : " + "<t:" + time2 + ":R>" + "\n\n"
-                        + MessageUser + "\n\n" + StringroleLess
-                        + "\n" + everHereOne + "\n" + RulesOnly + "\n\n" + MessageRole + "\n\n\n\n" + uptime;
-
-                try {
-                    EmbedBuilder embedBuilder = new EmbedBuilder();
-                    embedBuilder.setDescription(finalMessage);
-                    main.api.getServerById(IDs.serverID).get().getChannelById(IDs.Statistiques).get()
-                            .asServerTextChannel().get().getMessages(1).get().getOldestMessage().get()
-                            .edit(embedBuilder);
-
-                    setCounterOnCategory((Online + DND + IDLE + Offline), (Online + DND + IDLE));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                BuildMessage(true, IDs.Statistiques);
             }
         };
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(task, 1000 * 5, 1000 * 60 * 15);
+    }
+
+    public static void BuildMessage(Boolean timed, String channel){
+        String MessageRole = "";
+        for (Role role : roles()) {
+            if (role.equals(IDs.RoleGenshinImpact) || role.equals(IDs.RoleHomme) || role.equals(IDs.RolePC)) {
+                MessageRole += "\n";
+            }
+            MessageRole += rolesString(role) + "\n";
+        }
+
+        int DND = 0;
+        int Online = 0;
+        int IDLE = 0;
+        int Offline = 0;
+        int Bot = 0;
+        int roleLess = 0;
+        int onlyRules = 0;
+        for (User user : main.api.getServerById(IDs.serverID).get().getMembers()) {
+            if (user.isBot()) {
+                Bot++;
+            } else {
+                if (user.getRoles(main.api.getServerById(IDs.serverID).get()).size() == 1) {
+                    roleLess++;
+                }
+                if (user.getRoles(main.api.getServerById(IDs.serverID).get())
+                        .size() == IDs.defaultRoleSizeWithSplitterAndRulesAndEveryOne) {
+                    if (user.getRoles(main.api.getServerById(IDs.serverID).get())
+                            .contains(IDs.RoleReglesValides)) {
+                        onlyRules++;
+                    }
+                }
+                if (user.getStatus().equals(UserStatus.DO_NOT_DISTURB)) {
+                    DND++;
+                } else if (user.getStatus().equals(UserStatus.ONLINE)) {
+                    Online++;
+                } else if (user.getStatus().equals(UserStatus.IDLE)) {
+                    IDLE++;
+                } else if (user.getStatus().equals(UserStatus.OFFLINE)) {
+                    Offline++;
+                }
+            }
+        }
+
+        String uptime = "";
+        try{
+            uptime = getUptime();
+        }catch(Exception e){
+
+        }
+
+        String MessageUser = ":green_circle: **En ligne** : " + Online + "\n" + ":red_circle: **Hors ligne** : "
+                + Offline + "\n" + ":no_entry: **Ne pas déranger** : " + DND + "\n"
+                + ":crescent_moon: **Absent** : " + IDLE + "\n" + ":robot: Bot : " + Bot;
+
+        Role everyone = IDs.RoleEveryone;
+        String everHereOne = rolesString(everyone);
+        String StringroleLess = IDs.EmojiRocket + " Sans rôle : " + roleLess;
+        String RulesOnly = IDs.RoleReglesValides.getMentionTag() + " uniquement : " + onlyRules;
+
+        long time = Instant.now().getEpochSecond();
+        Date date = new Date();
+        date.setMinutes(date.getMinutes() + 15);
+        long time2 = date.toInstant().getEpochSecond();
+
+        String finalMessage = "<t:" + time + ":R>" + ", prochain : " + "<t:" + time2 + ":R>" + "\n\n"
+                + MessageUser + "\n\n" + StringroleLess
+                + "\n" + everHereOne + "\n" + RulesOnly + "\n\n" + MessageRole + "\n\n\n\n" + uptime;
+
+        try {
+            EmbedBuilder embedBuilder = new EmbedBuilder();
+            embedBuilder.setDescription(finalMessage);
+            
+            if(timed){
+            main.api.getServerById(IDs.serverID).get().getChannelById(IDs.Statistiques).get()
+                    .asServerTextChannel().get().getMessages(1).get().getOldestMessage().get()
+                    .edit(embedBuilder);
+            }else{
+                main.api.getServerById(IDs.serverID).get().getChannelById(channel).get().asServerTextChannel().get().sendMessage(embedBuilder).get();
+            }
+
+            setCounterOnCategory((Online + DND + IDLE + Offline), (Online + DND + IDLE));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<Role> roles() {
