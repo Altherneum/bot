@@ -3,11 +3,9 @@ package altherneum.fr.commands;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.interaction.SlashCommandInteraction;

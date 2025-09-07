@@ -1,8 +1,5 @@
 package altherneum.fr.commands;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
 import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.interaction.callback.InteractionImmediateResponseBuilder;
 
