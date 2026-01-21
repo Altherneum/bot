@@ -38,8 +38,8 @@
 ![Org followers](https://img.shields.io/github/followers/Altherneum?color=red&style=badge)
 ![Org sponsors](https://img.shields.io/github/sponsors/Altherneum?color=red)
 
-# Utilité
-Bot Discord for Altherneum.fr [server](https://doc.altherneum.fr/github/server)
+# bot
+- Bot Discord for Altherneum.fr [server](https://doc.altherneum.fr/github/server)
 
 # Github
 - [Repository](https://github.com/Altherneum/bot)
@@ -48,6 +48,8 @@ Bot Discord for Altherneum.fr [server](https://doc.altherneum.fr/github/server)
 - [Commits](https://github.com/Altherneum/bot/commits/main)
 - [Latest release](https://github.com/Altherneum/bot/releases/latest)
 - [Releases](https://github.com/Altherneum/bot/releases)
+
+- Git origin : [git.altherneum.fr/altherneum/](git.altherneum.fr/altherneum/)
 
 # Libs
 ## Javacord
