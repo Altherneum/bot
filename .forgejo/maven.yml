@@ -1,0 +1,84 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Network test HTTP git.altherneum.fr
+      run: |
+        apt update
+        apt install -y curl
+        curl -v http://git.altherneum.fr
+    - name: Network test HTTPs git.altherneum.fr
+      run: |
+        apt update
+        apt install -y curl
+        curl -v https://git.altherneum.fr
+    - name: Network test HTTP altherneum.fr/*/*.git
+      run: curl -v http://git.altherneum.fr/Altherneum/bot.git/info/refs?service=git-upload-pack   
+    - name: Network test HTTPs altherneum.fr/*/*.git
+      run: curl -v https://git.altherneum.fr/Altherneum/bot.git/info/refs?service=git-upload-pack   
+
+    - name: Checkout bot.git
+      run: |
+        git init
+        git config --global --add safe.directory /github/workspace
+        git remote add origin http://git.altherneum.fr/Altherneum/bot.git
+        git fetch --depth=1 origin main
+        git checkout FETCH_HEAD
+
+    - name: Install OpenJDK 21 manually
+      run: |
+        JDK_VERSION=21
+        wget https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.7%2B6/OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
+        mkdir -p /opt/java-$JDK_VERSION
+        tar -xzf OpenJDK21U-jdk_x64_linux_hotspot_21.*.tar.gz -C /opt/java-$JDK_VERSION --strip-components=1
+        echo "JAVA_HOME=/opt/java-$JDK_VERSION" >> $GITHUB_ENV
+        echo "/opt/java-$JDK_VERSION/bin" >> $GITHUB_PATH
+    - name: Show Java version
+      run: java -version
+
+    - name: Maven 3.8.9 installation
+      run: |
+        MAVEN_VERSION=3.8.9
+        MAVEN_HOME=/opt/maven
+        mkdir -p $MAVEN_HOME
+        curl -fsSL https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xzf - -C /opt/maven --strip-components=1
+        ln -s $MAVEN_HOME/bin/mvn /usr/local/bin/mvn
+
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    - name: Artifacts generation
+      run: |
+        mkdir -p dist/release
+        cp target/*.jar dist/release
+
+    - name: Generate Tag
+      id: tag
+      run: |
+        TAG="v$(date +'%d-%m-%Y_%H-%M-%S')"
+        echo "tag=$TAG" >> $GITHUB_OUTPUT
+        echo "Tag : $TAG"
+
+    - name: Forgejo release
+      uses: actions/forgejo-release@v2.7.3
+      with:
+          tag: ${{ steps.tag.outputs.tag }}
+          direction: upload
+          url: https://git.altherneum.fr
+          repo: Altherneum/bot
+          token: ${{ secrets.WRITE_TOKEN_RELEASE_ACTION }}
+          release-dir: dist/release
+          release-notes: "RELEASE ${{ steps.tag.outputs.tag }}"
