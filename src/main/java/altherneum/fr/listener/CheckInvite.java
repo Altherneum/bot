@@ -124,7 +124,7 @@ public class CheckInvite {
                         Date date2 = new Date(timestamp2.getTime());
                         embedBuilder.setDescription("Bienvenue à toi " + user.getMentionTag() + "  (`"
                                 + user.getDiscriminatedName() + "`)\nSur Discord depuis le : **__"
-                                + StatsTimer.DateFormated(date2) + "__**\n\n");
+                                + StatsTimer.DateFormated(date2) + "__**\nIdentifiant unique : `" + user.getIdAsString() + "`\n\n");
                         embedBuilder.addInlineField("Invité par", inviter.getMentionTag());
                         embedBuilder.addInlineField("Lien", ".gg/" + richInvite1.getCode());
                         embedBuilder.addInlineField("Cliques", "" + richInvite1.getUses());
@@ -146,7 +146,7 @@ public class CheckInvite {
                         Date date2 = new Date(timestamp2.getTime());
                         embedBuilder.setDescription("Bon retour à toi " + user.getMentionTag() + "  (`"
                                 + user.getDiscriminatedName() + "`)\nSur Discord depuis le : **__"
-                                + StatsTimer.DateFormated(date2) + "__**\n\n");
+                                + StatsTimer.DateFormated(date2) + "__**\nIdentifiant unique : `" + user.getIdAsString() + "`\n\n");
                         embedBuilder.addInlineField("Invité par", inviter.getMentionTag());
                         embedBuilder.addInlineField("Lien", ".gg/" + richInvite1.getCode());
                         embedBuilder.addInlineField("Cliques", "" + richInvite1.getUses());
