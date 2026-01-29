@@ -35,8 +35,9 @@ public class JoinLeaveListener {
                 EmbedBuilder embedBuilder = new EmbedBuilder();
                 embedBuilder.setThumbnail(user.getAvatar());
                 embedBuilder.setTitle("\uD83D\uDEAB Aurevoir");
-                embedBuilder.setDescription(user.getMentionTag() + "  (`" + user.getDiscriminatedName()
-                        + "`)\nSur Discord depuis le : **__" + StatsTimer.DateFormated(date2) + "__**");
+                embedBuilder.setDescription(user.getMentionTag() + "  (`" + user.getDiscriminatedName() + "`)"
+                        + "\nSur Discord depuis le : **__" + StatsTimer.DateFormated(date2) + "__**"
+                        + "\nIdentifiant unique : `" + user.getIdAsString() + "`");
                 embedBuilder.addInlineField("Messages", "" + i);
                 embedBuilder.addInlineField("Invitations", "" + total);
                 main.api.getChannelById(IDs.Invitation).get().asServerTextChannel().get().sendMessage(embedBuilder);
