@@ -49,7 +49,8 @@ public class casinoProfil {
         embedBuilder.setTitle("\uD83D\uDC8E Profil");
         embedBuilder.setDescription(user.getMentionTag() + "  (`" + user.getDiscriminatedName()
                 + "`)\n \uD83D\uDE80 a rejoint le : **__" + StatsTimer.DateFormated(date) + "__**"
-                + "\nSur Discord depuis le : **__" + StatsTimer.DateFormated(date2) + "__**");
+                + "\nSur Discord depuis le : **__" + StatsTimer.DateFormated(date2) + "__**"
+                + "\nIdentifiant unique : `" + user.getIdAsString() + "`");
         embedBuilder.addInlineField("Rôle le plus haut",
                 user.getRoles(server).get(user.getRoles(server).size() - 1).getMentionTag());
         embedBuilder.addInlineField("    💰 Argent", "" + Gold);
