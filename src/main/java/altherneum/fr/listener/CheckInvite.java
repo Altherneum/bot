@@ -175,10 +175,10 @@ public class CheckInvite {
                         embedBuilder.addInlineField("ID", user.getIdAsString());
                         embedBuilder.addInlineField("Raison", "Compte crée il y a moins de " + monthToCheck + " mois");
                         embedBuilder.addInlineField("Date du compte", "<t:" + timestampUserJoinDiscord.toInstant().getEpochSecond() + ":R>");
-                        user.sendMessage(embedBuilder).get();
 
                         main.api.getServerTextChannelById(IDs.Sanctions).get().sendMessage(embedBuilder);
                         main.api.getServerTextChannelById(IDs.AutoMod).get().sendMessage(embedBuilder);
+                        user.sendMessage(embedBuilder).get();
 
                         main.api.getServerById(IDs.serverID).get().kickUser(user, "Auto kick " + monthToCheck + " mois");
                     } else if (dateUserJoinDiscord.after(dateNow2)) {
