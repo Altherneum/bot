@@ -130,8 +130,8 @@ public class CheckInvite {
                         embedBuilder.addInlineField("Cliques", "" + richInvite1.getUses());
                         embedBuilder.addInlineField("Invitations", "" + linkCountedUses);
                         embedBuilder.addInlineField("Totaux", "" + total);
-                        main.api.getChannelById(IDs.Invitation).get().asServerTextChannel().get()
-                                .sendMessage(embedBuilder);
+
+                        main.api.getChannelById(IDs.Invitation).get().asServerTextChannel().get().sendMessage(embedBuilder);
                     } else {
                         int linkCountedUses = fileConfiguration.getInt("InvitesCounted." + richInvite1.getCode());
                         int total = 0;
@@ -152,8 +152,8 @@ public class CheckInvite {
                         embedBuilder.addInlineField("Cliques", "" + richInvite1.getUses());
                         embedBuilder.addInlineField("Invitations", "" + linkCountedUses);
                         embedBuilder.addInlineField("Totaux", "" + total);
-                        main.api.getChannelById(IDs.Invitation).get().asServerTextChannel().get()
-                                .sendMessage(embedBuilder);
+
+                        main.api.getChannelById(IDs.Invitation).get().asServerTextChannel().get().sendMessage(embedBuilder);
                     }
 
                     Timestamp timestampUserJoinDiscord = new Timestamp(user.getCreationTimestamp().toEpochMilli());
@@ -174,15 +174,13 @@ public class CheckInvite {
                         embedBuilder.addInlineField("Utilisateur", user.getMentionTag());
                         embedBuilder.addInlineField("ID", user.getIdAsString());
                         embedBuilder.addInlineField("Raison", "Compte crée il y a moins de " + monthToCheck + " mois");
-                        embedBuilder.addInlineField("Date du compte",
-                                "<t:" + timestampUserJoinDiscord.toInstant().getEpochSecond() + ":R>");
-
-                        main.api.getServerById(IDs.serverID).get().kickUser(user,
-                                "Auto kick " + monthToCheck + " mois");
-
+                        embedBuilder.addInlineField("Date du compte", "<t:" + timestampUserJoinDiscord.toInstant().getEpochSecond() + ":R>");
                         user.sendMessage(embedBuilder).get();
+
                         main.api.getServerTextChannelById(IDs.Sanctions).get().sendMessage(embedBuilder);
                         main.api.getServerTextChannelById(IDs.AutoMod).get().sendMessage(embedBuilder);
+
+                        main.api.getServerById(IDs.serverID).get().kickUser(user, "Auto kick " + monthToCheck + " mois");
                     } else if (dateUserJoinDiscord.after(dateNow2)) {
                         EmbedBuilder embedBuilder = new EmbedBuilder();
                         embedBuilder.setThumbnail(user.getAvatar());
@@ -190,8 +188,7 @@ public class CheckInvite {
                         embedBuilder.addInlineField("Utilisateur", user.getMentionTag());
                         embedBuilder.addInlineField("ID", user.getIdAsString());
                         embedBuilder.addInlineField("Raison", "Compte crée il y a moins de " + monthToCheck2 + " mois");
-                        embedBuilder.addInlineField("Date du compte",
-                                "<t:" + timestampUserJoinDiscord.toInstant().getEpochSecond() + ":R>");
+                        embedBuilder.addInlineField("Date du compte", "<t:" + timestampUserJoinDiscord.toInstant().getEpochSecond() + ":R>");
 
                         main.api.getServerTextChannelById(IDs.AutoMod).get().sendMessage(embedBuilder);
                     }
