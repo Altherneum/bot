@@ -43,7 +43,8 @@ public class getYT {
 
             if(messageText.contains("https://www.youtube.com/") || messageText.contains("https://youtu.be/") || messageText.contains("https://youtube.com/shorts/") || messageText.contains("https://music.youtube.com/")){
                 checkForYoutubeMessage(messageText);
-                message.delete().get();
+                //message.delete().get();
+                message.delete().join();
             }
         }
 
