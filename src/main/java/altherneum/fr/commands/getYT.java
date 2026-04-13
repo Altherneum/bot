@@ -95,6 +95,33 @@ public class getYT {
             }
         }
 
+        if(youtubeUrls.size() >= 1){
+            File tempFile = new File("output.txt");
+            try (FileWriter writer = new FileWriter(tempFile)) {
+                writer.write(youtubeUrls.toString());
+            }
+
+            new MessageBuilder()
+                .append("Here is the file containing the string:")
+                .addAttachment(tempFile)
+                .send(serverTextChannel).get();
+            youtubeUrls = new ArrayList<>();
+        }
+
+        if(nonMatchingText.length() >= 1){
+            File tempFile2 = new File("output2.txt");
+            try (FileWriter writer = new FileWriter(tempFile2)) {
+                writer.write(nonMatchingText.toString());
+            }
+
+            new MessageBuilder()
+                .append("Here is the file containing the string:")
+                .addAttachment(tempFile2)
+                .send(serverTextChannel).get();
+
+            nonMatchingText = new StringBuffer();
+        }
+
         serverTextChannel.sendMessage("OK").get();
     }
 
