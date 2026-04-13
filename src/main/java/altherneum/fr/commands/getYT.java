@@ -60,7 +60,7 @@ public class getYT {
                 count++;
             }
 
-            if(total % 20 == 0){
+            if(total % 100 == 0){
                 serverTextChannel.sendMessage("n°" + total).get();
             }
 
