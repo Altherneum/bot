@@ -1,5 +1,8 @@
 package altherneum.fr.commands;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -8,6 +11,7 @@ import java.util.regex.Pattern;
 
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.interaction.SlashCommandInteraction;
 
 import altherneum.fr.main.main;
@@ -27,7 +31,7 @@ public class getYT {
         });
     }
     
-    public static void dumpVideoFromChannel(String channelID) throws InterruptedException, ExecutionException{
+    public static void dumpVideoFromChannel(String channelID) throws InterruptedException, ExecutionException, IOException{
         ServerTextChannel serverTextChannel = main.api.getServerTextChannelById(channelID).get();
         
         int count = 0;
@@ -43,16 +47,30 @@ public class getYT {
             }
         }
 
-
-
         // Output results
         System.out.println("YouTube URLs found:");
         System.out.println(youtubeUrls.toString());
-        serverTextChannel.sendMessage(youtubeUrls.toString());
+        File tempFile = new File("output.txt");
+        try (FileWriter writer = new FileWriter(tempFile)) {
+            writer.write(youtubeUrls.toString());
+        }
+        new MessageBuilder()
+            .append("Here is the file containing the string:")
+            .addAttachment(tempFile)
+            .send(serverTextChannel);
+
+
 
         System.out.println("\nNon-matching text:");
         System.out.println(nonMatchingText.toString());
-        serverTextChannel.sendMessage(nonMatchingText.toString());
+        File tempFile2 = new File("output2.txt");
+        try (FileWriter writer = new FileWriter(tempFile2)) {
+            writer.write(nonMatchingText.toString());
+        }
+        new MessageBuilder()
+            .append("Here is the file containing the string:")
+            .addAttachment(tempFile2)
+            .send(serverTextChannel);
     }
 
     // List to store extracted YouTube URLs
