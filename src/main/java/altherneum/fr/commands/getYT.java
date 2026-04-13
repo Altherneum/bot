@@ -30,11 +30,13 @@ public class getYT {
             if (slashCommandInteraction.getCommandName().equalsIgnoreCase("yt")) {
                 try {
                     String id = slashCommandInteraction.getOptionStringValueByIndex(0).get();
-                    dumpVideoFromChannel(id);
+                    
                     InteractionImmediateResponseBuilder interactionImmediateResponseBuilder = slashCommandInteraction
                         .createImmediateResponder();
                     interactionImmediateResponseBuilder.setContent("\uD83D\uDC8E");
                     interactionImmediateResponseBuilder.respond();
+                    
+                    dumpVideoFromChannel(id);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
