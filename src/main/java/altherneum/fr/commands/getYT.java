@@ -17,6 +17,12 @@ import org.javacord.api.interaction.SlashCommandInteraction;
 import altherneum.fr.main.main;
 
 public class getYT {
+
+    // List to store extracted YouTube URLs
+    public static List<String> youtubeUrls = new ArrayList<>();
+    // StringBuffer to build the remaining non-matching text
+    public static StringBuffer nonMatchingText = new StringBuffer();
+
     public static void onYT() {
         main.api.addSlashCommandCreateListener(event -> {
             SlashCommandInteraction slashCommandInteraction = event.getSlashCommandInteraction();
@@ -38,46 +44,39 @@ public class getYT {
         for(Message message : serverTextChannel.getMessages(100).get()){
             String messageText = message.getContent();
             
-            count++;
-            System.out.println("-> " + count);
-
             if(messageText.contains("https://www.youtube.com/") || messageText.contains("https://youtu.be/") || messageText.contains("https://youtube.com/shorts/") || messageText.contains("https://music.youtube.com/")){
                 checkForYoutubeMessage(messageText);
                 //message.delete().get();
                 message.delete().join();
+                count++;
+            }
+
+            if(count >= 10){
+                File tempFile = new File("output.txt");
+                try (FileWriter writer = new FileWriter(tempFile)) {
+                    writer.write(youtubeUrls.toString());
+                }
+
+                new MessageBuilder()
+                    .append("Here is the file containing the string:")
+                    .addAttachment(tempFile)
+                    .send(serverTextChannel).get();
+
+                File tempFile2 = new File("output2.txt");
+                try (FileWriter writer = new FileWriter(tempFile2)) {
+                    writer.write(nonMatchingText.toString());
+                }
+
+                new MessageBuilder()
+                    .append("Here is the file containing the string:")
+                    .addAttachment(tempFile2)
+                    .send(serverTextChannel).get();
+
+                nonMatchingText = new StringBuffer();
+                youtubeUrls = new ArrayList<>();
             }
         }
-
-        // Output results
-        System.out.println("YouTube URLs found:");
-        System.out.println(youtubeUrls.toString());
-        File tempFile = new File("output.txt");
-        try (FileWriter writer = new FileWriter(tempFile)) {
-            writer.write(youtubeUrls.toString());
-        }
-        new MessageBuilder()
-            .append("Here is the file containing the string:")
-            .addAttachment(tempFile)
-            .send(serverTextChannel).get();
-
-
-
-        System.out.println("\nNon-matching text:");
-        System.out.println(nonMatchingText.toString());
-        File tempFile2 = new File("output2.txt");
-        try (FileWriter writer = new FileWriter(tempFile2)) {
-            writer.write(nonMatchingText.toString());
-        }
-        new MessageBuilder()
-            .append("Here is the file containing the string:")
-            .addAttachment(tempFile2)
-            .send(serverTextChannel).get();
     }
-
-    // List to store extracted YouTube URLs
-    public static List<String> youtubeUrls = new ArrayList<>();
-    // StringBuffer to build the remaining non-matching text
-    public static StringBuffer nonMatchingText = new StringBuffer();
 
     public static void checkForYoutubeMessage(String text){
         // Pattern to match YouTube URLs
