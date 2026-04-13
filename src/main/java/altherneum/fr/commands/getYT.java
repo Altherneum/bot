@@ -35,7 +35,7 @@ public class getYT {
         ServerTextChannel serverTextChannel = main.api.getServerTextChannelById(channelID).get();
         
         int count = 0;
-        for(Message message : serverTextChannel.getMessages(500).get()){
+        for(Message message : serverTextChannel.getMessages(100).get()){
             String messageText = message.getContent();
             
             count++;
@@ -58,7 +58,7 @@ public class getYT {
         new MessageBuilder()
             .append("Here is the file containing the string:")
             .addAttachment(tempFile)
-            .send(serverTextChannel);
+            .send(serverTextChannel).get();
 
 
 
@@ -71,7 +71,7 @@ public class getYT {
         new MessageBuilder()
             .append("Here is the file containing the string:")
             .addAttachment(tempFile2)
-            .send(serverTextChannel);
+            .send(serverTextChannel).get();
     }
 
     // List to store extracted YouTube URLs
