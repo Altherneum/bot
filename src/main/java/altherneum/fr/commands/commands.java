@@ -94,6 +94,7 @@ public class commands {
                 return new SlashCommandBuilder().setName("yt")
                                 .setDescription("Obtenir les URL YT")
                                 .addOption(option(SlashCommandOptionType.STRING, "Channel_ID", "L'ID du salon avec les messages contenant des URL YT", true))
+                                .addOption(option(SlashCommandOptionType.DECIMAL, "amount", "Messages amount", true))
                                 .setDefaultEnabledForPermissions(PermissionType.ADMINISTRATOR);
         }
 

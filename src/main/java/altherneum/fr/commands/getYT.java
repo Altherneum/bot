@@ -30,13 +30,14 @@ public class getYT {
             if (slashCommandInteraction.getCommandName().equalsIgnoreCase("yt")) {
                 try {
                     String id = slashCommandInteraction.getOptionStringValueByIndex(0).get();
+                    int number = (int) Math.round(slashCommandInteraction.getOptionDecimalValueByIndex(1).get());
                     
                     InteractionImmediateResponseBuilder interactionImmediateResponseBuilder = slashCommandInteraction
                         .createImmediateResponder();
                     interactionImmediateResponseBuilder.setContent("\uD83D\uDC8E");
                     interactionImmediateResponseBuilder.respond();
                     
-                    dumpVideoFromChannel(id);
+                    dumpVideoFromChannel(id, number);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -44,18 +45,23 @@ public class getYT {
         });
     }
     
-    public static void dumpVideoFromChannel(String channelID) throws InterruptedException, ExecutionException, IOException{
+    public static void dumpVideoFromChannel(String channelID, int number) throws InterruptedException, ExecutionException, IOException{
         ServerTextChannel serverTextChannel = main.api.getServerTextChannelById(channelID).get();
         
         int count = 0;
-        for(Message message : serverTextChannel.getMessages(500).get()){
+        int total = 0;
+        for(Message message : serverTextChannel.getMessages(number).get()){
             String messageText = message.getContent();
-            
+            total++;
             if(messageText.contains("https://www.youtube.com/") || messageText.contains("https://youtu.be/") || messageText.contains("https://youtube.com/shorts/") || messageText.contains("https://music.youtube.com/")){
                 checkForYoutubeMessage(messageText);
                 //message.delete().get();
                 message.delete().get();
                 count++;
+            }
+
+            if(total % 20 == 0){
+                serverTextChannel.sendMessage("n°" + total).get();
             }
 
             if(count >= 10){
