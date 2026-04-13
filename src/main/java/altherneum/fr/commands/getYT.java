@@ -86,6 +86,8 @@ public class getYT {
                 }
             }
         }
+
+        serverTextChannel.sendMessage("OK").get();
     }
 
     public static void checkForYoutubeMessage(String text){
