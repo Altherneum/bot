@@ -53,28 +53,32 @@ public class getYT {
 
             if(count >= 10){
                 count = 0;
-                File tempFile = new File("output.txt");
-                try (FileWriter writer = new FileWriter(tempFile)) {
-                    writer.write(youtubeUrls.toString());
+                if(youtubeUrls.size() >= 1){
+                    File tempFile = new File("output.txt");
+                    try (FileWriter writer = new FileWriter(tempFile)) {
+                        writer.write(youtubeUrls.toString());
+                    }
+
+                    new MessageBuilder()
+                        .append("Here is the file containing the string:")
+                        .addAttachment(tempFile)
+                        .send(serverTextChannel).get();
+                    youtubeUrls = new ArrayList<>();
                 }
 
-                new MessageBuilder()
-                    .append("Here is the file containing the string:")
-                    .addAttachment(tempFile)
-                    .send(serverTextChannel).get();
+                if(nonMatchingText.length() >= 1){
+                    File tempFile2 = new File("output2.txt");
+                    try (FileWriter writer = new FileWriter(tempFile2)) {
+                        writer.write(nonMatchingText.toString());
+                    }
 
-                File tempFile2 = new File("output2.txt");
-                try (FileWriter writer = new FileWriter(tempFile2)) {
-                    writer.write(nonMatchingText.toString());
+                    new MessageBuilder()
+                        .append("Here is the file containing the string:")
+                        .addAttachment(tempFile2)
+                        .send(serverTextChannel).get();
+
+                    nonMatchingText = new StringBuffer();
                 }
-
-                new MessageBuilder()
-                    .append("Here is the file containing the string:")
-                    .addAttachment(tempFile2)
-                    .send(serverTextChannel).get();
-
-                nonMatchingText = new StringBuffer();
-                youtubeUrls = new ArrayList<>();
             }
         }
     }
