@@ -53,7 +53,7 @@ public class getYT {
         for(Message message : serverTextChannel.getMessages(number).get()){
             String messageText = message.getContent();
             total++;
-            if(messageText.contains("https://www.youtube.com/") || messageText.contains("https://youtu.be/") || messageText.contains("https://youtube.com/shorts/") || messageText.contains("https://music.youtube.com/")){
+            if(messageText.contains("https://www.youtube.com/") || messageText.contains("https://youtube.com/") || messageText.contains("https://youtu.be/") || messageText.contains("https://youtube.com/shorts/") || messageText.contains("https://music.youtube.com/")){
                 checkForYoutubeMessage(messageText);
                 //message.delete().get();
                 message.delete().get();
