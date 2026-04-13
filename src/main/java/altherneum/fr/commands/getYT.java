@@ -48,7 +48,7 @@ public class getYT {
         ServerTextChannel serverTextChannel = main.api.getServerTextChannelById(channelID).get();
         
         int count = 0;
-        for(Message message : serverTextChannel.getMessages(100).get()){
+        for(Message message : serverTextChannel.getMessages(500).get()){
             String messageText = message.getContent();
             
             if(messageText.contains("https://www.youtube.com/") || messageText.contains("https://youtu.be/") || messageText.contains("https://youtube.com/shorts/") || messageText.contains("https://music.youtube.com/")){
