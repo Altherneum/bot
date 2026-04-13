@@ -52,6 +52,7 @@ public class getYT {
             }
 
             if(count >= 10){
+                count = 0;
                 File tempFile = new File("output.txt");
                 try (FileWriter writer = new FileWriter(tempFile)) {
                     writer.write(youtubeUrls.toString());
