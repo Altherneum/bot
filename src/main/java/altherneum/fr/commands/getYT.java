@@ -13,6 +13,7 @@ import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.interaction.SlashCommandInteraction;
+import org.javacord.api.interaction.callback.InteractionImmediateResponseBuilder;
 
 import altherneum.fr.main.main;
 
@@ -30,6 +31,10 @@ public class getYT {
                 try {
                     String id = slashCommandInteraction.getOptionStringValueByIndex(0).get();
                     dumpVideoFromChannel(id);
+                    InteractionImmediateResponseBuilder interactionImmediateResponseBuilder = slashCommandInteraction
+                        .createImmediateResponder();
+                    interactionImmediateResponseBuilder.setContent("\uD83D\uDC8E");
+                    interactionImmediateResponseBuilder.respond();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -47,7 +52,7 @@ public class getYT {
             if(messageText.contains("https://www.youtube.com/") || messageText.contains("https://youtu.be/") || messageText.contains("https://youtube.com/shorts/") || messageText.contains("https://music.youtube.com/")){
                 checkForYoutubeMessage(messageText);
                 //message.delete().get();
-                message.delete().join();
+                message.delete().get();
                 count++;
             }
 
