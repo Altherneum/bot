@@ -42,6 +42,7 @@ public class commands {
                 ip.onIP();
                 upvote.onUpvote();
                 banqueRoute.banquerouteCMD();
+                getYT.onYT();;
         }
 
         public static List<SlashCommandBuilder> arrays() {
@@ -64,6 +65,7 @@ public class commands {
                 arrays.add(IP());
                 arrays.add(BanqueRoute());
                 arrays.add(Upvote());
+                arrays.add(Yt());
                 return arrays.stream().toList();
         }
 
@@ -88,6 +90,12 @@ public class commands {
                                 .setDefaultEnabledForPermissions(PermissionType.ADMINISTRATOR);
         }
 
+        public static SlashCommandBuilder Yt() {
+                return new SlashCommandBuilder().setName("yt")
+                                .setDescription("Obtenir les URL YT")
+                                .addOption(option(SlashCommandOptionType.STRING, "Channel ID", "L'ID du salon avec les messages contenant des URL YT", true));
+        }
+        
         public static SlashCommandBuilder Upvote() {
                 return new SlashCommandBuilder().setName("upvote")
                                 .setDescription("Voter pour l'utilisateur")
