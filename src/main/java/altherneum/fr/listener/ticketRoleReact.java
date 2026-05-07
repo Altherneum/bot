@@ -47,14 +47,12 @@ public class ticketRoleReact {
                                 .setAllowed(PermissionType.READ_MESSAGE_HISTORY)
                                 .setAllowed(PermissionType.SEND_MESSAGES).setAllowed(PermissionType.MANAGE_CHANNELS)
                                 .build();
-                        Permissions permissionsFalse = new PermissionsBuilder().setAllDenied().build();
+                        //Permissions permissionsFalse = new PermissionsBuilder().setAllDenied().build();
                         Permissions permissionsTrue = new PermissionsBuilder().setAllAllowed().build();
-                        serverTextChannelBuilder.addPermissionOverwrite(IDs.RoleEveryone, permissionsFalse);// @all
+                        //serverTextChannelBuilder.addPermissionOverwrite(IDs.RoleEveryone, permissionsFalse);// @all
                         serverTextChannelBuilder.addPermissionOverwrite(event.getUser().get(), permissions);// user
                         serverTextChannelBuilder.addPermissionOverwrite(IDs.RoleAssistance, permissions);// assistance
-                        serverTextChannelBuilder.addPermissionOverwrite(IDs.RoleDirection, permissionsFonda);// direction
-                                                                                                             // (manage
-                                                                                                             // chan)
+                        serverTextChannelBuilder.addPermissionOverwrite(IDs.RoleDirection, permissionsFonda);// direction (manage chan)
                         serverTextChannelBuilder.addPermissionOverwrite(IDs.RoleFondateur, permissionsTrue);// fonda
                         ServerTextChannel serverTextChannel = serverTextChannelBuilder.create().join();
                         serverTextChannel.sendMessage("L'" + IDs.RoleAssistance.getMentionTag() + " arrive bientôt\n\n"
