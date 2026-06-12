@@ -41,8 +41,8 @@ public class messageUpdater {
         copyMessage(IDs.ReglesNew, "1117917094906953809", 2);
         copyMessage(IDs.ReglesNew, "1121133776853024808", 1);
         copyMessage(IDs.Regles, "1086666682610745364", 1);
-        copyMessage(IDs.NotrePub, "1086667328743288934", 1);
-        copyMessage(IDs.NotrePub, "1086737989398429839", 2);
+        copyMessage(IDs.NotrePub, "1505551530365947964", 1);
+        copyMessage(IDs.NotrePub, "1512328899378548857", 2);
         copyMessage(IDs.Informations, "1086667520271990856", 1);
         copyMessage(IDs.CasinoCoinFlip, "1086668476724301927", 1);
         copyMessage(IDs.CasinoBoutique, "1086668570873835602", 1);

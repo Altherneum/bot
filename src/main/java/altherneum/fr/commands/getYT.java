@@ -102,7 +102,7 @@ public class getYT {
             }
 
             new MessageBuilder()
-                .append("Here is the file containing the string:")
+                .append("Here is the file containing the last string:")
                 .addAttachment(tempFile)
                 .send(serverTextChannel).get();
             youtubeUrls = new ArrayList<>();
@@ -115,14 +115,14 @@ public class getYT {
             }
 
             new MessageBuilder()
-                .append("Here is the file containing the string:")
+                .append("Here is the file containing the last string:")
                 .addAttachment(tempFile2)
                 .send(serverTextChannel).get();
 
             nonMatchingText = new StringBuffer();
         }
 
-        serverTextChannel.sendMessage("OK").get();
+        serverTextChannel.sendMessage("OK, ended loop").get();
     }
 
     public static void checkForYoutubeMessage(String text){
